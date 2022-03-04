@@ -13,8 +13,8 @@ public class BicycleApplication {
         int rounds = sc.nextInt();
         int round = 0;
 
-        while(round < rounds){
-            round ++;
+        while (round < rounds) {
+            round++;
             System.out.printf("\n----------------------- %d ROUND -----------------------\n", round);
             System.out.println("--------MOUNTAIN bike turn------");
             turn(mountainBike);
@@ -32,18 +32,18 @@ public class BicycleApplication {
         //System.out.printf("The winner is %s BIKE!!!", speedometer.chooseWinner(mountainBike.getSpeed(), roadBike.getSpeed()));
     }
 
-    public static void turn(Bicycle bike){
+    public static void turn(Bicycle bike) {
         System.out.print("Enter what you want to change (G - for changing gear / IS - To increase speed / DS - To decrease speed): ");
         String func = sc.nextLine();
 
-        try{
+        try {
             switch (func) {
                 case "IS" -> increaseSpeed(bike);
                 case "DS" -> decreasingSpeed(bike);
                 case "G" -> changeGear(bike);
                 default -> throw new Exeptions("Wrong input!");
             }
-        }catch (Exeptions e){
+        } catch (Exeptions e) {
             System.out.println(e.getMessage());
 //            e.printStackTrace();
             turn(bike);
@@ -52,38 +52,38 @@ public class BicycleApplication {
 
     }
 
-    public static void increaseSpeed(Bicycle bike){
+    public static void increaseSpeed(Bicycle bike) {
         System.out.println("Enter increasing speed: ");
         int speed = sc.nextInt();
 
         try {
             bike.speedUp(speed);
-        }catch (Exeptions e){
+        } catch (Exeptions e) {
             System.out.println(e.getMessage());
 //            e.printStackTrace();
             increaseSpeed(bike);
         }
     }
 
-    public static void decreasingSpeed(Bicycle bike){
+    public static void decreasingSpeed(Bicycle bike) {
         System.out.println("Enter decreasing speed: ");
         int speed = sc.nextInt();
 
         try {
             bike.applyBrakes(speed);
-        }catch (Exeptions e){
+        } catch (Exeptions e) {
             System.out.println(e.getMessage());
             decreasingSpeed(bike);
         }
     }
 
-    public static void changeGear(Bicycle bike){
+    public static void changeGear(Bicycle bike) {
         System.out.println("Enter gear changes: ");
         int newGear = sc.nextInt();
 
         try {
             bike.changeGear(newGear);
-        }catch (Exeptions e){
+        } catch (Exeptions e) {
             System.out.println(e.getMessage());
             changeGear(bike);
         }

@@ -1,6 +1,6 @@
 package com.itacademy.java.oop.basics.task1;
 
-public class Circle extends Shape{
+public class Circle extends Shape {
     private final double radius;
 
     public Circle(double radius) {
