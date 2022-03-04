@@ -1,6 +1,6 @@
 package com.itacademy.java.oop.basics.task1;
 
-public class Square extends Shape{
+public class Square extends Shape {
     private final double side;
 
     public Square(double side) {
@@ -18,11 +18,11 @@ public class Square extends Shape{
 
     @Override
     double calculateArea() {
-        return side*side;
+        return side * side;
     }
 
     @Override
     double calculatePerimeter() {
-        return side*4;
+        return side * 4;
     }
 }
