@@ -4,10 +4,10 @@ public class RoadBike implements Bicycle {
     private int gear;
     private int speed;
 
-    private final int MAXGEAR = 20;
-    private final int MINGEAR = 0;
-    private final int MAXSPEED = 50;
-    private final int MINSPEED = 0;
+    private final static int MAX_GEAR = 20;
+    private final static int MIN_GEAR = 0;
+    private final static int MAX_SPEED = 50;
+    private final static int MIN_SPEED = 0;
 
     public RoadBike(int gear, int speed) {
         this.gear = gear;
@@ -17,10 +17,10 @@ public class RoadBike implements Bicycle {
     @Override
     public void applyBrakes(int decrease) {
         if (decrease > 0) {
-            throw new Exeptions("Braking value can't be positive!");
+            throw new IllegalArgumentException("Braking value can't be positive!");
         }
-        if (speed - decrease < MINSPEED) {
-            throw new Exeptions("Value is too high to brake. Highest possible speed to decrease is " + (-speed + MINSPEED));
+        if (speed - decrease < MIN_SPEED) {
+            throw new IllegalArgumentException("Value is too high to brake. Highest possible speed to decrease is " + (-speed + MIN_SPEED));
         }
         speed += decrease;
         System.out.println("Current speed: " + speed);
@@ -29,10 +29,10 @@ public class RoadBike implements Bicycle {
     @Override
     public void speedUp(int increment) {
         if (increment < 0) {
-            throw new Exeptions("Increment value can't be negative!");
+            throw new IllegalArgumentException("Increment value can't be negative!");
         }
-        if (speed + increment > MAXSPEED) {
-            throw new Exeptions("Value is too high to increase bike speed. Highest possible speed to increase is " + (MAXSPEED - speed));
+        if (speed + increment > MAX_SPEED) {
+            throw new IllegalArgumentException("Value is too high to increase bike speed. Highest possible speed to increase is " + (MAX_SPEED - speed));
         }
         speed += increment;
         System.out.println("Current speed: " + speed);
@@ -41,13 +41,13 @@ public class RoadBike implements Bicycle {
     @Override
     public void changeGear(int newGear) {
         if (-2 > newGear || 2 < newGear) {
-            throw new Exeptions("Value is not allowed! Use 1, 2 or -1, -2 for changing gear");
+            throw new IllegalArgumentException("Value is not allowed! Use 1, 2 or -1, -2 for changing gear");
         }
-        if (gear + newGear < MINGEAR) {
-            throw new Exeptions("Gear already reached it's minimum of " + MINGEAR);
+        if (gear + newGear < MIN_GEAR) {
+            throw new IllegalArgumentException("Gear already reached it's minimum of " + MIN_GEAR);
         }
-        if (gear + newGear > MAXGEAR) {
-            throw new Exeptions("Gear already reached it's maximum of" + MAXGEAR);
+        if (gear + newGear > MAX_GEAR) {
+            throw new IllegalArgumentException("Gear already reached it's maximum of" + MAX_GEAR);
         }
         gear += newGear;
         System.out.println("Current gear: " + gear);

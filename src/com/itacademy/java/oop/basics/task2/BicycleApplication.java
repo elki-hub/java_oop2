@@ -6,8 +6,8 @@ public class BicycleApplication {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        MountainBike mountainBike = new MountainBike(0, 0);
-        RoadBike roadBike = new RoadBike(0, 0);
+        Bicycle mountainBike = new MountainBike(0, 0);
+        Bicycle roadBike = new RoadBike(0, 0);
 
         System.out.print("Enter number of rounds: ");
         int rounds = sc.nextInt();
@@ -28,8 +28,8 @@ public class BicycleApplication {
 
         System.out.println("----------------------- THE END OF RACE  -----------------------");
         Speedometer speedometer = new Speedometer();
-        System.out.printf("The winner is %s BIKE!!!", speedometer.chooseWinner(mountainBike, roadBike));
-        //System.out.printf("The winner is %s BIKE!!!", speedometer.chooseWinner(mountainBike.getSpeed(), roadBike.getSpeed()));
+        System.out.printf("The winner is %s BIKE!!!", speedometer.chooseWinner((MountainBike) mountainBike, (RoadBike) roadBike));
+        //System.out.printf("The winner is %s BIKE!!!", speedometer.chooseWinner(((MountainBike) mountainBike).getSpeed(), ((RoadBike) roadBike).getSpeed()));
     }
 
     public static void turn(Bicycle bike) {
@@ -41,9 +41,9 @@ public class BicycleApplication {
                 case "IS" -> increaseSpeed(bike);
                 case "DS" -> decreasingSpeed(bike);
                 case "G" -> changeGear(bike);
-                default -> throw new Exeptions("Wrong input!");
+                default -> throw new IllegalArgumentException("Wrong input!");
             }
-        } catch (Exeptions e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 //            e.printStackTrace();
             turn(bike);
@@ -52,38 +52,38 @@ public class BicycleApplication {
 
     }
 
-    public static void increaseSpeed(Bicycle bike) {
+    private static void increaseSpeed(Bicycle bike) {
         System.out.println("Enter increasing speed: ");
         int speed = sc.nextInt();
 
         try {
             bike.speedUp(speed);
-        } catch (Exeptions e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 //            e.printStackTrace();
             increaseSpeed(bike);
         }
     }
 
-    public static void decreasingSpeed(Bicycle bike) {
+    private static void decreasingSpeed(Bicycle bike) {
         System.out.println("Enter decreasing speed: ");
         int speed = sc.nextInt();
 
         try {
             bike.applyBrakes(speed);
-        } catch (Exeptions e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             decreasingSpeed(bike);
         }
     }
 
-    public static void changeGear(Bicycle bike) {
+    private static void changeGear(Bicycle bike) {
         System.out.println("Enter gear changes: ");
         int newGear = sc.nextInt();
 
         try {
             bike.changeGear(newGear);
-        } catch (Exeptions e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             changeGear(bike);
         }
