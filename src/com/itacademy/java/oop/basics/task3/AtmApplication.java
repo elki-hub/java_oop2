@@ -53,7 +53,7 @@ public class AtmApplication {
                     case 4:
                         return;
                 }
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
         }
