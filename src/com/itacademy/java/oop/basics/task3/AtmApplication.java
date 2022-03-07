@@ -59,7 +59,7 @@ public class AtmApplication {
         }
     }
 
-    public static Card getCardInfo() {
+    private static Card getCardInfo() {
         while (true) {
             try {
                 System.out.print("Enter your card number: ");
